@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./api";
 import { useEffect, useState } from "react";
 import { MdOutlineDone } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
@@ -18,7 +18,7 @@ function App() {
     e.preventDefault();
     if (!newTodo.trim()) return;
     try{
-      const response = await axios.post("/api/todos",{text: newTodo});
+      const response = await axios.post("/todos",{text: newTodo});
       setTodos([...todos, response.data]);
       setNewTodo("");    
     }catch(error){
@@ -28,7 +28,7 @@ function App() {
 
   const fetchTodos = async () =>{
     try{
-      const response = await axios.get("/api/todos");
+      const response = await axios.get("/todos");
       console.log(response.data);
       setTodos(response.data);
     }catch(error){
@@ -47,7 +47,7 @@ function App() {
 
   const saveEdit = async(id)=>{
       try{
-        const response =  await axios.patch(`/api/todos/${id}`,{
+        const response =  await axios.patch(`/todos/${id}`,{
           text: editedText,
         })
         setTodos(todos.map((todo)=>(todo._id === id ? response.data : todo)));
@@ -59,7 +59,7 @@ function App() {
 
   const deleteTodo = async (id) =>{
     try{
-      await axios.delete(`/api/todos/${id}`);
+      await axios.delete(`/todos/${id}`);
       setTodos((todos) => todos.filter((todo)=> todo._id !== id));
     }catch(error){
       console.log("error in deleting todo", error);
@@ -69,7 +69,7 @@ function App() {
   const toggleTodo = async(id) => {
     try{
       const todo = todos.find((t) => t._id === id);
-      const response = await axios.patch(`/api/todos/${id}`,{
+      const response = await axios.patch(`/todos/${id}`,{
         completed: !todo.completed
       })
       setTodos(todos.map((t)=> (t._id === id ? response.data : t) ))
