@@ -6,21 +6,25 @@ import cors from "cors";
 // import path from "path";
 
 
+
+
+dotenv.config();
+
+const PORT = process.env.PORT || 5000;
+const app = express();
+
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://mern-todo-app-wk2n.onrender.com"
+        "https://mern-todo-app-weld-theta.vercel.app/"
     ],
     credentials: true
 }));
 
-dotenv.config();
-const PORT = process.env.PORT || 5000;
-const app = express();
-
 app.use(express.json());
 
 app.use('/api/todos', todoRoutes);
+
 
 const __dirname = path.resolve();
 
