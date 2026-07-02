@@ -9,7 +9,7 @@ import cors from "cors";
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://your-vercel-app.vercel.app"
+        "https://mern-todo-app-wk2n.onrender.com"
     ],
     credentials: true
 }));
