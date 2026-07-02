@@ -16,7 +16,7 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://mern-todo-app-weld-theta.vercel.app/"
+        "https://mern-todo-app-weld-theta.vercel.app"
     ],
     credentials: true
 }));
