@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import todoRoutes from "./routes/todo.routes.js"
 import { connectDB } from "./config/db.js";
 import cors from "cors";
-// import path from "path";
+import path from "path";
 
 
 
@@ -26,7 +26,7 @@ app.use(express.json());
 app.use('/api/todos', todoRoutes);
 
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 // if(process.env.NODE_ENV === "production"){
 //     app.use(express.static(path.join(__dirname,"/frontend/dist")));
